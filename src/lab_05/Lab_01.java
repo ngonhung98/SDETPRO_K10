@@ -1,28 +1,35 @@
 package lab_05;
 
+import javax.xml.transform.sax.SAXSource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Lab_01 {
-
     public static void main(String[] args) {
         List<Integer> myArrayList;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Game start");
         menuGame();
         System.out.println("Please choice your number you want:");
-        int choice= scanner.nextInt();
-        switch (choice){
+        int choice = scanner.nextInt();
+        switch (choice) {
             case 1:
                 myArrayList = playGame();
                 System.out.println(myArrayList);
-                break ;
+                menuGame();
+                break;
             case 2:
-                getMaxNumber();
+                int max = getMaxNumber();
+                System.out.println("Maximum number is" + max);
+                menuGame();
                 break;
             case 3:
-                getMinNumber();
+                int min = getMinNumber();
+                System.out.println("Minmum number is" + min);
+                menuGame();
+                break;
+            case 4:
                 break;
         }
     }
@@ -31,7 +38,8 @@ public class Lab_01 {
         System.out.print("----------MENU GAME-------------------\n");
         System.out.print("1. Add number into ArrayList and Print numbers\n");
         System.out.print("2. Get maximum number\n");
-        System.out.print("3. Get minimum number");
+        System.out.print("3. Get minimum number\n");
+        System.out.print("4. Exit\n");
     }
 
     public static List playGame() {
@@ -46,12 +54,29 @@ public class Lab_01 {
         }
         return myArrayList;
     }
-    public static void getMaxNumber(){
+
+    public static int getMaxNumber() {
         List<Integer> myArrayList;
-        myArrayList=playGame();
+        myArrayList = playGame();
+        Integer max = myArrayList.get(0);
+        for (int i = 0; i < myArrayList.size(); i++) {
+            if (myArrayList.get(i) > max) {
+                max = myArrayList.get(i);
+            }
+        }
+        return max;
 
     }
-    public static void getMinNumber(){
 
+    public static int getMinNumber() {
+        List<Integer> myArrayList;
+        myArrayList = playGame();
+        Integer min = myArrayList.get(0);
+        for (int i = 0; i < myArrayList.size(); i++) {
+            if (myArrayList.get(i) < min) {
+                min = myArrayList.get(i);
+            }
+        }
+        return min;
     }
 }
